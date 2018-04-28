@@ -16,6 +16,10 @@ This is compatible with KinectToVR, and can run in tandem with any SteamVR app.
 
 ## Configuration (Advanced!)
 
+## Controls
+
+---
+
 PlayspaceMover can be configured to use different kinds of bindings, currently it only supports button presses. You can change the default buttons by setting button masks in the options. This can be done through either a shortcut, or a commandline.
 
 I find the easiest way is to experiment using the command line, then set up a permanent config with a shortcut!
@@ -35,6 +39,22 @@ This will set the A and X buttons to move the playspace, and if you press B and 
 If you're on Vive, try typing `./PlayspaceMover.exe -l 2 -r 2 --resetButtonMask 4` then press enter!
 ![Image of PowerShell For Vive](https://i.imgur.com/S98It5X.png)
 This will set the menu buttons to move your playspace, and if you press both grip buttons simultaneously it will reset your playspace!
+
+### Physics
+
+---
+
+PlayspaceMover supports some basic physics! [Click here for a video.](http://files.1337upload.net/2018-04-28_16-07-49-d0b94a.mp4)
+Here's a list of some of the options, their defaults, and what they do.
+
+| Option           | Default | Description                                                                                                                 |
+|------------------|---------|-----------------------------------------------------------------------------------------------------------------------------|
+| --physics        | N/A     | If specified, enables physics. Physics will automatically be enabled anyway if you specify any of the options below though. |
+| --gravity        | 9.81    | How much acceleration is applied to your y velocity every frame in meters per second.                                       |
+| --friction       | 8       | How much force is applied opposing your velocity while on the ground.                                                       |
+| --airFriction    | 0       | How much force is applied opposing your velocity while in the air.                                                          |
+| --jumpMultiplier | 80      | How much force is applied when you try throwing yourself.                                                                   |
+| --noGround       | N/A     | If specified, disables ground collision (You probably should have gravity set to 0 if you use this tag.)                    |
 
 ### Permanent Config
 ---
