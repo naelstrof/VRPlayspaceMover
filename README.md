@@ -7,9 +7,14 @@ This is compatible with KinectToVR, and can run in tandem with any SteamVR app.
 
 * Requires VR Input Emulator, which an easy installer can be found [here](https://github.com/matzman666/OpenVR-InputEmulator/releases).
 * Grab a PlayspaceMover executable from the [releases page](https://github.com/naelstrof/VRPlayspaceMover/releases).
-* Extract anywhere and run anytime, it will automatically detect and connect to SteamVR, then it will automatically detect and work with any devices connected.
+* Extract anywhere!
 
-## Config
+## Usage
+
+* While SteamVR is running, run PlayspaceMover.exe. Make sure it says `Ready!`.
+* In VR, hold down either X/Y or the Vive menu buttons to drag your playspace!
+
+## Configuration (Advanced!)
 
 PlayspaceMover can be configured to use different kinds of bindings, currently it only supports button presses. You can change the default buttons by setting button masks in the options. This can be done through either a shortcut, or a commandline.
 
@@ -39,13 +44,31 @@ To make this change "permanent", you can create a new shortcut by right-click dr
 ![GIF showing how to make a shortcut](https://i.imgur.com/zPM27WN.gif)
 
 Then edit it's properties by right-clicking on it, and hitting properties.
-Then add your desired button mask options to the "Target:" section.
+Then append your desired button mask parameters to the "Target:" section. (Don't override it!)
 
 ![Image of shortcut properties](https://i.imgur.com/rUSzA8l.png)
 
 Done! Double click on that shortcut to launch your configured playspace mover!
 
 Try `./PlayspaceMover.exe --help` for more help on bit-masks and other stuff!
+
+## Bitmask Table
+
+Here's a list of the known button bits. There's a couple more for Oculus that aren't listed because I haven't bothered testing for them!
+
+### Oculus masks
+
+| Button | Bit | Mask |
+|--------|-----|------|
+| A/X    | 7   | 128  |
+| B/Y    | 1   | 2    |
+
+### Vive masks
+
+| Button | Bit | Mask |
+|--------|-----|------|
+| Menu   | 1   | 2    |
+| Grip   | 2   | 4    |
 
 ## Tips
 
