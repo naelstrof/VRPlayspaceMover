@@ -16,9 +16,7 @@ This is compatible with KinectToVR, and can run in tandem with any SteamVR app.
 
 ## Configuration (Advanced!)
 
-## Controls
-
----
+### Controls
 
 PlayspaceMover can be configured to use different kinds of bindings, currently it only supports button presses. You can change the default buttons by setting button masks in the options. This can be done through either a shortcut, or a commandline.
 
@@ -42,8 +40,6 @@ This will set the menu buttons to move your playspace, and if you press both gri
 
 ### Physics
 
----
-
 PlayspaceMover supports some basic physics! [Click here for a video.](http://files.1337upload.net/2018-04-28_16-07-49-d0b94a.mp4)
 Here's a list of some of the options, their defaults, and what they do.
 
@@ -57,7 +53,6 @@ Here's a list of some of the options, their defaults, and what they do.
 | --noGround       | N/A     | If specified, disables ground collision (You probably should have gravity set to 0 if you use this tag.)                    |
 
 ### Permanent Config
----
 
 To make this change "permanent", you can create a new shortcut by right-click dragging it to your desktop.
 
