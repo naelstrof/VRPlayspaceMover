@@ -16,17 +16,23 @@ PlayspaceMover can be configured to use different kinds of bindings, currently i
 I find the easiest way is to experiment using the command line, then set up a permanent config with a shortcut!
 
 Open a command line in the folder with PlayspaceMover.exe like so:
+
 ![GIF Showing how to open cmd](https://i.imgur.com/jgifVnJ.gif)
+
 ---
+
 If you're on Oculus, type `./PlayspaceMover.exe -l 128 -r 128 --resetButtonMask 2` then press enter!
 ![Image of PowerShell for Oculus](https://i.imgur.com/g2MsPH0.png)
 This will set the A and X buttons to move the playspace, and if you press B and Y simultaneously it will reset your playspace!
+
 ---
+
 If you're on Vive, try typing `./PlayspaceMover.exe -l 2 -r 2 --resetButtonMask 4` then press enter!
 ![Image of PowerShell For Vive](https://i.imgur.com/S98It5X.png)
 This will set the menu buttons to move your playspace, and if you press both grip buttons simultaneously it will reset your playspace!
 
 ### Permanent Config
+---
 
 To make this change "permanent", you can create a new shortcut by right-click dragging it to your desktop.
 
