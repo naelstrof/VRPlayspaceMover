@@ -45,7 +45,7 @@ This will set the menu buttons to move your playspace, and if you press both gri
 PlayspaceMover supports some basic physics! [Click here for a video.](http://files.1337upload.net/2018-04-28_16-07-49-d0b94a.mp4)
 Here's a list of some of the options, their defaults, and what they do.
 
-| Option           | Default | Description                                                                                                                 |
+| Option　　　　　　　| Default | Description                                                                                                                 |
 |------------------|---------|-----------------------------------------------------------------------------------------------------------------------------|
 | --physics        | N/A     | If specified, enables physics. Physics will automatically be enabled anyway if you specify any of the options below though. |
 | --gravity        | 9.81    | How much acceleration is applied to your y velocity every frame in meters per second.                                       |
@@ -53,6 +53,16 @@ Here's a list of some of the options, their defaults, and what they do.
 | --airFriction    | 0       | How much force is applied opposing your velocity while in the air.                                                          |
 | --jumpMultiplier | 80      | How much force is applied when you try throwing yourself.                                                                   |
 | --noGround       | N/A     | If specified, disables ground collision (You probably should have gravity set to 0 if you use this tag.)                    |
+
+### Fake Full Body Tracking
+
+If your game requires full body tracking, you can make PlayspaceMover spawn some fake trackers! The following options enable/configure 
+this feature.
+
+| Option　　　　　　　| Default | Description                                                                                                                                           |
+|----------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| --fakeTrackers | N/A     | Enables and spawns fake trackers that follow your HMD around.                                                                                         |
+| --bodyHeight   | 2       | Sets your body height in meters, it uses this to calculate where to place your feet and hip trackers. This also automatically enables --fakeTrackers. |
 
 ### Permanent Config
 
