@@ -75,7 +75,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>E:\PlayspaceMover\third-party\OculusSDK\LibOVR\Include;E:\PlayspaceMover\third-party\VRInputEmulator\include;E:\PlayspaceMover\third-party\openvr\headers;$(IncludePath)</IncludePath>
+    <IncludePath>E:\PlayspaceMover\third-party\glm-0.9.9-a2;E:\PlayspaceMover\third-party\OculusSDK\LibOVR\Include;E:\PlayspaceMover\third-party\VRInputEmulator\include;E:\PlayspaceMover\third-party\openvr\headers;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\naelstrof\.nuget\packages\boost_date_time-vc141\1.66.0\lib\native;E:\PlayspaceMover\third-party\openvr\lib\win64;E:\PlayspaceMover\third-party\VRInputEmulator\lib\x64;E:\PlayspaceMover\third-party\OculusSDK\LibOVR\Lib\Windows\x64\Release\VS2015;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -83,7 +83,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>E:\PlayspaceMover\third-party\OculusSDK\LibOVR\Include;E:\PlayspaceMover\third-party\VRInputEmulator\include;E:\PlayspaceMover\third-party\openvr\headers;$(IncludePath)</IncludePath>
+    <IncludePath>E:\PlayspaceMover\third-party\glm-0.9.9-a2;E:\PlayspaceMover\third-party\OculusSDK\LibOVR\Include;E:\PlayspaceMover\third-party\VRInputEmulator\include;E:\PlayspaceMover\third-party\openvr\headers;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\naelstrof\.nuget\packages\boost_date_time-vc141\1.66.0\lib\native;E:\PlayspaceMover\third-party\openvr\lib\win64;E:\PlayspaceMover\third-party\VRInputEmulator\lib\x64;E:\PlayspaceMover\third-party\OculusSDK\LibOVR\Lib\Windows\x64\Release\VS2015;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -208,7 +208,6 @@
     <Import Project="..\packages\boost_wserialization-vc141.1.67.0.0\build\boost_wserialization-vc141.targets" Condition="Exists('..\packages\boost_wserialization-vc141.1.67.0.0\build\boost_wserialization-vc141.targets')" />
     <Import Project="..\packages\boost_zlib-vc141.1.67.0.0\build\boost_zlib-vc141.targets" Condition="Exists('..\packages\boost_zlib-vc141.1.67.0.0\build\boost_zlib-vc141.targets')" />
     <Import Project="..\packages\boost-vc141.1.67.0.0\build\boost-vc141.targets" Condition="Exists('..\packages\boost-vc141.1.67.0.0\build\boost-vc141.targets')" />
-    <Import Project="..\packages\glm.0.9.8.5\build\native\glm.targets" Condition="Exists('..\packages\glm.0.9.8.5\build\native\glm.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -257,6 +256,5 @@
     <Error Condition="!Exists('..\packages\boost_wserialization-vc141.1.67.0.0\build\boost_wserialization-vc141.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost_wserialization-vc141.1.67.0.0\build\boost_wserialization-vc141.targets'))" />
     <Error Condition="!Exists('..\packages\boost_zlib-vc141.1.67.0.0\build\boost_zlib-vc141.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost_zlib-vc141.1.67.0.0\build\boost_zlib-vc141.targets'))" />
     <Error Condition="!Exists('..\packages\boost-vc141.1.67.0.0\build\boost-vc141.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost-vc141.1.67.0.0\build\boost-vc141.targets'))" />
-    <Error Condition="!Exists('..\packages\glm.0.9.8.5\build\native\glm.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\glm.0.9.8.5\build\native\glm.targets'))" />
   </Target>
 </Project>
