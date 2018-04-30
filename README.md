@@ -3,6 +3,8 @@
 Lets you drag around your playspace by gripping certain buttons. This allows you to "climb" around certain games, and allows you to adjust your floor level on the fly.
 This is compatible with KinectToVR, and can run in tandem with any SteamVR app.
 
+If you want to help support this kind of development, feel free to support me through google wallet (naelstrof@gmail.com) or through my [Digital Tip Jar](https://digitaltipjar.com/naelstrof)!
+
 ## Installation
 
 * Requires VR Input Emulator, which an easy installer can be found [here](https://github.com/matzman666/OpenVR-InputEmulator/releases).
