@@ -102,3 +102,36 @@ Here's a list of the known button bits. There's a couple more for Oculus that ar
 ## Tips
 
 * VR Input emulator likes to keep HUGE logs if you're on oculus (18+GB), set `X:/Steam/steamapps/common/SteamVR/drivers/00vrinputemulator/bin/win64/driver_vrinputemulator.log` to read-only to prevent this!
+* Restarting the application by closing it or pressing Ctrl+C will reset your playspace.
+
+## Compiling Instructions (Developers Only)
+
+### Download Third-Party Libraries
+
+First we have to collect all the libraries that can't be grabbed using nuget.
+
+1. Git-clone and extract VRPlayspaceMover's source code. (Download Zip on the top right, or use a git client to clone.)
+2. Download and extract glm-0.9.9-a2 from [here](https://github.com/g-truc/glm/releases/tag/0.9.9-a2) to `PlayspaceMover/third-party`.
+3. Download and extract the latest OpenVR zip from [here](https://github.com/ValveSoftware/openvr/releases) to `PlayspaceMover/third-party`.
+4. Download and extract the latest OpenVR-InputEmulator source code zip from [here](https://github.com/matzman666/OpenVR-InputEmulator/releases) to `PlayspaceMover/third-party`.
+
+### Compile Third-Party Dependencies
+
+1. Ensure you have Visual Studio, and the Windows 10 SDK installed. You can find them [here](https://www.visualstudio.com/downloads/) and [here](https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk) respectively.
+2. Open `PlayspaceMover/third-party/OpenVR-InputEmulator-1.3/VRInputEmulator.sln` with whichever Visual Studio you have.
+3. You should get a *Retarget Solution* window where you can retarget the solution to the v141 toolset.
+4. Install `boost`, and `boost-vc141` with nuget. (Right-click on the project and press *Manage nuget packages.*)
+5. In lib_vrinputemulator's properties, add `PlayspaceMover/third-party/openvr/headers` as an include folder.
+6. Right-click on lib_vrinputemulator, and press *Build*. You should now have a libvrinputemulator.lib.
+7. Rename that library to libvrinputemulator-d.lib, then compile a release version too by changing into Release mode.
+![Release Mode Image](https://i.imgur.com/QhnLzfu.png)
+
+### Configure VRPlayspaceMover Until It Compiles!
+
+1. Open `PlayspaceMover/PlayspaceMover.sln` with Visual Studio.
+2. Install `boost`, and `boost-vc141` with nuget. (Right-click on the project and press *Manage nuget packages.*)
+3. Right-click on the VRPlayspaceMover project, and change the include directories to look similar to the image below.
+![Directory Images](https://i.imgur.com/T5iciwK.png)
+4. Then change the library directories to look similar to the image below.
+![Directory Images](https://i.imgur.com/4JHyubs.png)
+5. Compile and you're done!
