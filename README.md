@@ -64,6 +64,7 @@ this feature.
 | Option　　　　　　　| Default | Description                                                                                                                                           |
 |----------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
 | --fakeTrackers | N/A     | Enables and spawns fake trackers that follow your HMD around.                                                                                         |
+| --orbitTracker | N/A     | Alternative positioning scheme for the trackers                                                                                                       |
 | --bodyHeight   | 2       | Sets your body height in meters, it uses this to calculate where to place your feet and hip trackers. This also automatically enables --fakeTrackers. |
 
 ### Permanent Config
