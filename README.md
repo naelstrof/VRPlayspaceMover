@@ -1,5 +1,7 @@
 This branch of Playspace mover includes a couple changes suggested by a friend. It may be unstable.
 
+Since this is a development branch it is not listed under releases and can only be downloaded [Here](http://harrygodden.com/rs/file.php?i=version5-rain.zip)
+
 # Playspace Mover
 
 Lets you drag around your playspace by gripping certain buttons. This allows you to "climb" around certain games, and allows you to adjust your floor level on the fly.
