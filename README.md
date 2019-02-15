@@ -1,3 +1,5 @@
+This branch of Playspace mover includes a couple changes suggested by a friend. It may be unstable.
+
 # Playspace Mover
 
 Lets you drag around your playspace by gripping certain buttons. This allows you to "climb" around certain games, and allows you to adjust your floor level on the fly.
@@ -82,23 +84,45 @@ Done! Double click on that shortcut to launch your configured playspace mover!
 
 Try `./PlayspaceMover.exe --help` for more help on bit-masks and other stuff!
 
-## Bitmask Table
+## Input
 
-Here's a list of the known button bits. There's a couple more for Oculus that aren't listed because I haven't bothered testing for them!
+The bindings for the different toggles are set up using short input strings. You specify Left: or Right: to define the controller, followed by a list of buttons you want to activate on. Examples:
 
-### Oculus masks
+`--moveBinding "Left:X,Right:A"` - Moves playspace when either X or A is held
 
-| Button | Bit | Mask |
-|--------|-----|------|
-| A/X    | 7   | 128  |
-| B/Y    | 1   | 2    |
+`--resetBinding "&Left:Joystick,Right:Joystick"` - Resets playspace when both joysticks are clicked in
 
-### Vive masks
+### Commands
 
-| Button | Bit | Mask |
-|--------|-----|------|
-| Menu   | 1   | 2    |
-| Grip   | 2   | 4    |
+These are the currently bindable actions using the new binding system.
+
+| Option                 | Description                          |
+|------------------------|--------------------------------------|
+| --moveBinding          | Moves the playspace                  |
+| --togglePhysicsBinding | Turns physics on and off             |
+| --resetBinding         | Resets the plasypace back to default |
+
+### Button aliases
+
+These are the currently supported aliases for the controllers. (Case sensitive)
+
+| Oculus                 | Vive                                 |
+|------------------------|--------------------------------------|
+| X Y A B                |                                      |
+| Joystick               |                                      |
+| Grip                   |                                      |
+
+### Modifiers
+
+Modifiers go at the start of the string, and specify if the buttons should activate individually, if they all need to be pressed at the same time, or if a combination on at least one controller is met.
+
+| Modifier               | Effect                                                          |
+|------------------------|-----------------------------------------------------------------|
+| `|` (default)            | Any of the buttons in string activates                          |
+| &                      | Requires ALL buttons in string to be pressed                    |
+| ~                      | Requires ALL buttons, but a single controller can activate solo |
+
+
 
 ## Tips
 
