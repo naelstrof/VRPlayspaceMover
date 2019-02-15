@@ -21,9 +21,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="PlayspaceMover.cpp.old" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cxxopts.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bindings.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
