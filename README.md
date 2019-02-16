@@ -1,6 +1,5 @@
-This branch of Playspace mover includes a couple changes suggested by a friend. It may be unstable.
 
-Since this is a development branch it is not listed under releases and can only be downloaded [Here](http://harrygodden.com/rs/file.php?i=version5-rain.zip)
+This branch of Playspace mover includes a couple changes suggested by a friend. It may be unstable.
 
 # Playspace Mover
 
@@ -20,33 +19,61 @@ If you want to help support this kind of development, feel free to support me th
 * While SteamVR is running, run PlayspaceMover.exe. Make sure it says `Ready!`.
 * In VR, hold down either X/Y or the Vive menu buttons to drag your playspace!
 
-## Configuration (Advanced!)
+# Configuration (Advanced!)
 
-### Controls
+## Bindings
 
-PlayspaceMover can be configured to use different kinds of bindings, currently it only supports button presses. You can change the default buttons by setting button masks in the options. This can be done through either a shortcut, or a commandline.
+The bindings for the different toggles are set up using short input strings. You specify `Left:` , `Right:` or `Both: ` (both is enabled by default) to define which controller, followed by a comma separated list of button aliases. Examples:
 
-I find the easiest way is to experiment using the command line, then set up a permanent config with a shortcut!
+Move playspace when either X or A is held:
+```cpp
+--moveBinding "Left: X, Right: A"
+``` 
+Reset playspace when both joysticks are clicked in:
+```cpp
+--resetBinding "& Joystick"
+``` 
 
-Open a command line in the folder with PlayspaceMover.exe like so:
+Toggle physics when the Right joystick, and the X button is pressed
+```cpp
+--togglePhysicsBinding "& Left: X, Right: Joystick"
+```
+### Binding Commands
 
-![GIF Showing how to open cmd](https://i.imgur.com/jgifVnJ.gif)
+These are the currently bindable actions using the binding system.
 
----
+| Option                 | Description                          |
+|------------------------|--------------------------------------|
+| --moveBinding          | Moves the playspace                  |
+| --togglePhysicsBinding | Turns physics on and off             |
+| --resetBinding         | Resets the plasypace back to default |
 
-If you're on Oculus, type `./PlayspaceMover.exe -l 128 -r 128 --resetButtonMask 2` then press enter!
-![Image of PowerShell for Oculus](https://i.imgur.com/g2MsPH0.png)
-This will set the A and X buttons to move the playspace, and if you press B and Y simultaneously it will reset your playspace!
+#### Button aliases
 
----
+These are the currently supported aliases for the controllers.
 
-If you're on Vive, try typing `./PlayspaceMover.exe -l 2 -r 2 --resetButtonMask 4` then press enter!
-![Image of PowerShell For Vive](https://i.imgur.com/S98It5X.png)
-This will set the menu buttons to move your playspace, and if you press both grip buttons simultaneously it will reset your playspace!
+| Oculus                 | Vive                                 |
+|------------------------|--------------------------------------|
+| X Y A B                |                                      |
+| Joystick               |                                      |
+| Grip                   |                                      |
 
-### Physics
+###### *Need to add vive controller aliases
 
-PlayspaceMover supports some basic physics! [Click here for a video.](http://files.1337upload.net/2018-04-28_16-07-49-d0b94a.mp4)
+#### Modifiers
+
+Modifiers go at the start of the binding string, and specify if the buttons should activate individually, if they all need to be pressed at the same time, or if a combination on at least one controller is met.
+
+| Modifier               | Effect                                                          |
+|------------------------|-----------------------------------------------------------------|
+| `|` (default)            | Any of the buttons in string activates                          |
+| &                      | Requires ALL buttons in string to be pressed                    |
+| ~                      | Requires ALL buttons, but a single controller can activate it solo |
+
+#### Physics
+
+PlayspaceMover supports some basic physics!
+
 Here's a list of some of the options, their defaults, and what they do.
 
 | Option　　　　　　　　　　　| Default | Description                                                                                                                 |
@@ -60,15 +87,15 @@ Here's a list of some of the options, their defaults, and what they do.
 | --leftTogglePhysicsMask  | 0       | Specifies which buttons you have to hold simultaneously on the left controller to toggle physics.                           |
 | --rightTogglePhysicsMask | 0       | Specifies which buttons you have to hold simultaneously on the right controller to toggle physics.                          |
 
-### Fake Full Body Tracking
+#### Fake Full Body Tracking
 
 If your game requires full body tracking, you can make PlayspaceMover spawn some fake trackers! The following options enable/configure 
 this feature.
 
-| Option　　　　　　　| Default | Description                                                                                                                                           |
-|----------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
-| --fakeTrackers | N/A     | Enables and spawns fake trackers that follow your HMD around.                                                                                         |
-| --orbitTracker | N/A     | Alternative positioning scheme for the trackers                                                                                                       |
+| Options　　　　　　　| Default | Description                                                                                                                                           
+|--------------------|---------|------------
+| --fakeTrackers | N/A     | Enables and spawns fake trackers that follow your HMD around.                                                                                         
+| --orbitTracker | N/A     | Alternative positioning scheme for the trackers                                                                                                       
 | --bodyHeight   | 2       | Sets your body height in meters, it uses this to calculate where to place your feet and hip trackers. This also automatically enables --fakeTrackers. |
 
 ### Permanent Config
@@ -85,45 +112,6 @@ Then append your desired button mask parameters to the "Target:" section. (Don't
 Done! Double click on that shortcut to launch your configured playspace mover!
 
 Try `./PlayspaceMover.exe --help` for more help on bit-masks and other stuff!
-
-## Input
-
-The bindings for the different toggles are set up using short input strings. You specify Left: or Right: to define the controller, followed by a list of buttons you want to activate on. Examples:
-
-`--moveBinding "Left:X,Right:A"` - Moves playspace when either X or A is held
-
-`--resetBinding "&Left:Joystick,Right:Joystick"` - Resets playspace when both joysticks are clicked in
-
-### Commands
-
-These are the currently bindable actions using the new binding system.
-
-| Option                 | Description                          |
-|------------------------|--------------------------------------|
-| --moveBinding          | Moves the playspace                  |
-| --togglePhysicsBinding | Turns physics on and off             |
-| --resetBinding         | Resets the plasypace back to default |
-
-### Button aliases
-
-These are the currently supported aliases for the controllers. (Case sensitive)
-
-| Oculus                 | Vive                                 |
-|------------------------|--------------------------------------|
-| X Y A B                |                                      |
-| Joystick               |                                      |
-| Grip                   |                                      |
-
-### Modifiers
-
-Modifiers go at the start of the string, and specify if the buttons should activate individually, if they all need to be pressed at the same time, or if a combination on at least one controller is met.
-
-| Modifier               | Effect                                                          |
-|------------------------|-----------------------------------------------------------------|
-| `|` (default)            | Any of the buttons in string activates                          |
-| &                      | Requires ALL buttons in string to be pressed                    |
-| ~                      | Requires ALL buttons, but a single controller can activate solo |
-
 
 
 ## Tips
