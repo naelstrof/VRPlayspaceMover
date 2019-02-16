@@ -66,7 +66,7 @@ Modifiers go at the start of the binding string, and specify if the buttons shou
 
 | Modifier               | Effect                                                          |
 |------------------------|-----------------------------------------------------------------|
-| `|` (default)            | Any of the buttons in string activates                          |
+| &#124; (default)       | Any of the buttons in string activates                          |
 | &                      | Requires ALL buttons in string to be pressed                    |
 | ~                      | Requires ALL buttons, but a single controller can activate it solo |
 
