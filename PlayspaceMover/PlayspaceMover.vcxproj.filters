@@ -30,5 +30,8 @@
     <ClInclude Include="bindings.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Info.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
