@@ -1,6 +1,4 @@
 
-This branch of Playspace mover includes a couple changes suggested by a friend. It may be unstable.
-
 # Playspace Mover
 
 Lets you drag around your playspace by gripping certain buttons. This allows you to "climb" around certain games, and allows you to adjust your floor level on the fly.
@@ -21,23 +19,32 @@ If you want to help support this kind of development, feel free to support me th
 
 # Configuration (Advanced!)
 
+PlayspaceMover can be configured to use different kinds of bindings, currently it only supports button presses. You can change the default buttons by setting bindings in the options. This can be done through either a shortcut, or a commandline.
+
+I find the easiest way is to experiment using the command line, then set up a permanent config with a shortcut!
+
+Open a command line in the folder with PlayspaceMover.exe like so:
+
+![GIF Showing how to open cmd](https://i.imgur.com/jgifVnJ.gif)
+
 ## Bindings
 
 The bindings for the different toggles are set up using short input strings. You specify `Left:` , `Right:` or `Both: ` (both is enabled by default) to define which controller, followed by a comma separated list of button aliases. Examples:
 
-Move playspace when either X or A is held:
+Move playspace when either X or A is held on oculus:
 ```cpp
 --moveBinding "Left: X, Right: A"
 ``` 
-Reset playspace when both joysticks are clicked in:
+Reset playspace when both joysticks are clicked on oculus:
 ```cpp
 --resetBinding "& Joystick"
 ``` 
 
-Toggle physics when the Right joystick, and the X button is pressed
+Toggle physics when the Grip button, and the right trigger are pressed on vive:
 ```cpp
---togglePhysicsBinding "& Left: X, Right: Joystick"
+--togglePhysicsBinding "Left: Grip & Right: Trigger"
 ```
+
 ### Binding Commands
 
 These are the currently bindable actions using the binding system.
@@ -54,21 +61,22 @@ These are the currently supported aliases for the controllers.
 
 | Oculus                 | Vive                                 |
 |------------------------|--------------------------------------|
-| X Y A B                |                                      |
-| Joystick               |                                      |
-| Grip                   |                                      |
+| A/X                    | Menu                                 |
+| B/Y                    | System                               |
+| Grip                   | Grip                                 |
+| Trigger                | Trigger                              |
+| Joystick               | Touchpad                             |
 
-###### *Need to add vive controller aliases
+###### *Vive button names may need clarification
 
 #### Modifiers
 
-Modifiers go at the start of the binding string, and specify if the buttons should activate individually, if they all need to be pressed at the same time, or if a combination on at least one controller is met.
+Modifiers go at any position within the input string, and specify that any button after that character will have the trait of that modifier. If none are specified, all buttons are treated as being in | (OR) mode.
 
 | Modifier               | Effect                                                          |
 |------------------------|-----------------------------------------------------------------|
-| &#124; (default)       | Any of the buttons in string activates                          |
-| &                      | Requires ALL buttons in string to be pressed                    |
-| ~                      | Requires ALL buttons, but a single controller can activate it solo |
+| &#124; (default)       | Any of the following buttons can activate                       |
+| &                      | All of the following buttons need to be pressed as well as previous conditions being met                    |
 
 #### Physics
 
@@ -86,6 +94,7 @@ Here's a list of some of the options, their defaults, and what they do.
 | --noGround               | N/A     | If specified, disables ground collision (You probably should have gravity set to 0 if you use this tag.)                    |
 | --leftTogglePhysicsMask  | 0       | Specifies which buttons you have to hold simultaneously on the left controller to toggle physics.                           |
 | --rightTogglePhysicsMask | 0       | Specifies which buttons you have to hold simultaneously on the right controller to toggle physics.                          |
+| --physicsStartOff | N/A | If you don't want physics to be automatically enabled, pass this flag |
 
 #### Fake Full Body Tracking
 
