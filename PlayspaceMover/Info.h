@@ -2,8 +2,14 @@
 
 namespace info
 {
-	const char* version = "v0.1.9-terri-c";
 
+// Version info
+const char * version = "v0.1.9";
+
+// Binding system info
+const char * notify_legacy = "";
+
+// Text to print when --help is called
 const char * help_text = R"VRPSM0(
 Copyright (C) 2017 Dalton Nell, PlayspaceMover Contributors
 (https://github.com/naelstrof/VRPlayspaceMover/graphs/contributors)
@@ -47,8 +53,11 @@ Options
                               Fake trackers are enabled and spawned at your feet
                               and in the middle of your body (hopefully your hips.)
 Examples
-    $ # Moves the playspace with ONLY A/X on Oculus.
-    $ PlayspaceMover -moveBinding "A,X"
+    $ # Moves the playspace with A OR X on Oculus.
+    $ PlayspaceMover --moveBinding "A, X"
+    
+    $ # Resets the playspace when the left grip and right trigger are pressed on Vive
+    $ PlayspaceMover --resetBinding "left: grip & right: trigger"
 
 Button Aliases
   Oculus		Vive
@@ -61,8 +70,8 @@ Button Aliases
 Tips
     * Restarting the app resets your playspace!
     * VR Input Emulator has a log file that can be dozens of gigabytes if
-you're on Oculus, it's in your SteamVR folder under drivers. Set it to
-read-only to keep it from growing indefinitely.
+	    you're on Oculus, it's in your SteamVR folder under drivers. Set it to
+	    read-only to keep it from growing indefinitely.
 
 )VRPSM0";
 }

@@ -83,8 +83,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)third-party\glm-0.9.9-a2;E:\PlayspaceMover\third-party\OculusSDK\LibOVR\Include;$(ProjectDir)third-party\OpenVR-InputEmulator-1.3\lib_vrinputemulator\include;$(ProjectDir)third-party\openvr-1.0.17\headers;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)third-party\openvr-1.0.17\lib\win64;$(ProjectDir)third-party\OpenVR-InputEmulator-1.3\lib\x64;E:\PlayspaceMover\third-party\OculusSDK\LibOVR\Lib\Windows\x64\Release\VS2015;D:\VRPMM\VRPM\PlayspaceMover\third-party\OpenVR-InputEmulator-1.3\packages\boost_date_time-vc141.1.68.0.0\lib\native;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(WindowsSdkDir)\include;$(ProjectDir)third-party\glm-0.9.9-a2;$(ProjectDir)third-party\OpenVR-InputEmulator-1.3\lib_vrinputemulator\include;$(ProjectDir)third-party\openvr-1.0.17\headers;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)third-party\openvr-1.0.17\lib\win64;$(ProjectDir)third-party\OpenVR-InputEmulator-1.3\lib\x64;$(ProjectDir)third-party\OpenVR-InputEmulator-1.3\packages\boost_date_time-vc141.1.68.0.0\lib\native;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -145,6 +145,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

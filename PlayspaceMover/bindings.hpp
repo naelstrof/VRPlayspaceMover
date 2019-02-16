@@ -2,13 +2,11 @@
 #include <vector>
 #include <map>
 
-#include <bitset>
-#include <iostream>
-
 #include <openvr.h>
 
 // Some string based utilites
 namespace sutil{
+	// Converts (naively) to lower case. Should be good enough for our case
 	std::string stringtolower(std::string s){
 		std::string out = s;
 
@@ -17,7 +15,8 @@ namespace sutil{
 
 		return out;
 	}
-
+	
+	// Removes whitespace
 	std::string trimspace(std::string const& str){
 		if (str.empty())
 			return str;
@@ -65,7 +64,7 @@ namespace bindings{
 		{ "trigger", vr::EVRButtonId::k_EButton_Axis1 }
 	};
 
-
+	// Bind struct, contains info about a binding.
 	struct bind {
 		uint64_t mask_left_or, mask_right_or;	// Masks for left and right OR registers
 		uint64_t mask_left_and, mask_right_and; // Masks for left and right AND registers
@@ -93,8 +92,13 @@ namespace bindings{
 			std::string pre_controller = "";
 			std::string controller = "both";
 			std::string entry = "";
-			uint8_t register_write = 0x0;
 
+			uint8_t register_write_pre = 0xC; // Start writing to both or registers by default
+			uint8_t register_write = 0xC; 
+
+			uint8_t register_write_temp = 0x0;
+
+			// Parse input character by character.
 			for (int i = 0; i < value.size() + 1; i++) {
 				char c = value[i];
 
@@ -102,32 +106,37 @@ namespace bindings{
 				case ':':
 					controller = sutil::stringtolower(sutil::trimspace(buf));
 
+					// Break if this controller is unsupported
+					if (!((controller == "left") || (controller == "right") || (controller == "both"))) throw std::exception(("Unknown controller alias '" + entry + "'").c_str());
+
 					buf = "";
 					break;
 
 				case '|': case '&':
 					// Arm selected register for write
-					register_write = (c == '|' ? 0xC : 0x3);
-
-					// Clean buffer to remove symbols
-					buf = buf.substr(0, buf.size()-1);
+					register_write_pre = (c == '|' ? 0xC : 0x3);
 
 				case ',': case '\0': // New entry or EOF
 					entry = sutil::stringtolower(sutil::trimspace(buf));
 
 					if (!(entry.size() > 0)) break; // Skip if nothing found in buffer
 
-					register_write &= ((controller == "left" ? 0xA : 0x5) | (controller == "both" ? 0xF : 0x0));
+					register_write_temp = register_write;
+					register_write_temp &= ((controller == "left" ? 0xA : 0x5) | (controller == "both" ? 0xF : 0x0));
 
+					// Break if this button is unrecognized
 					if (controller_aliases.count(entry) == 0) throw std::exception(("Unkown button alias '" + entry + "'").c_str());
 
-					if ((register_write & 0x8)) this->mask_left_or   |= ButtonMaskFromID(controller_aliases[entry]);
-					if ((register_write & 0x4)) this->mask_right_or  |= ButtonMaskFromID(controller_aliases[entry]);
-					if ((register_write & 0x2)) this->mask_left_and	 |= ButtonMaskFromID(controller_aliases[entry]);
-					if ((register_write & 0x1)) this->mask_right_and |= ButtonMaskFromID(controller_aliases[entry]);
+					if ((register_write_temp & 0x8)) this->mask_left_or   |= ButtonMaskFromID(controller_aliases[entry]);
+					if ((register_write_temp & 0x4)) this->mask_right_or  |= ButtonMaskFromID(controller_aliases[entry]);
+					if ((register_write_temp & 0x2)) this->mask_left_and  |= ButtonMaskFromID(controller_aliases[entry]);
+					if ((register_write_temp & 0x1)) this->mask_right_and |= ButtonMaskFromID(controller_aliases[entry]);
 
 					// Activate this register since we wrote to it
-					this->active_registers |= register_write;
+					this->active_registers |= register_write_temp;
+
+					// Write pre into actual register
+					register_write = register_write_pre;
 
 					buf = "";
 					break;
@@ -137,15 +146,6 @@ namespace bindings{
 					break;
 				}
 			}
-
-			/*
-			std::cout << "Evaluated bitmasks to :: " << std::endl;
-
-			std::cout << std::bitset<64>(this->mask_left_or) << std::endl;
-			std::cout << std::bitset<64>(this->mask_right_or) << std::endl;
-			std::cout << std::bitset<64>(this->mask_left_and) << std::endl;
-			std::cout << std::bitset<64>(this->mask_right_and) << std::endl;
-			std::cout << std::bitset<4>(this->active_registers) << std::endl;*/
 		}
 	};
 
