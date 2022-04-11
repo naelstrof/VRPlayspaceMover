@@ -1,3 +1,5 @@
+Playspace Mover has been deprecated! Check out OVR Advanced Settings on Steam instead: https://store.steampowered.com/app/1009850/OVR_Advanced_Settings/
+
 # Playspace Mover
 
 Lets you drag around your playspace by gripping certain buttons. This allows you to "climb" around certain games, and allows you to adjust your floor level on the fly.
